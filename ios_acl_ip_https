@@ -1,0 +1,27 @@
+---
+
+- name: HTTPS ACL for IOS
+  gather_facts: false
+  hosts: cisco
+  tasks:
+
+    - name: New ACL https
+      cisco.ios.ios_config:
+        parents:
+              - ip access-list standard HTTPS-ACCESS-IN
+        lines:
+              - 10 permit 10.1.1.0 0.0.0.255
+              - 20 permit 10.2.1.0 0.0.0.255
+              - 30 permit 10.3.1.0 0.0.0.255
+              - 100 deny any log
+
+    - name: Ansible https
+      cisco.ios.ios_config:
+        lines:
+         - ip http secure-server
+         - no ip http server
+         - ip http access-class ipv4 HTTPS-ACCESS-IN
+
+    - name: save running to start-config when modified
+      cisco.ios.ios_config:
+        save_when: modified
