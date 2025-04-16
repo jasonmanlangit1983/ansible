@@ -1,0 +1,73 @@
+---
+
+- name: Network Getting Started First Playbook
+  gather_facts: false
+  hosts: cisco
+  tasks:
+
+    - name: Add configure the exec banner
+      ios_banner:
+        banner: exec
+        text: |
+          #######################################################
+          #                                                     #
+          #     You have successfully entered this system       #
+          #     $(hostname) on line $(line). Be advised your    #
+          #     action are logged and audits are performed      #
+          #     daily. If you have any questions contact the    #
+          #     system administrator at +47 xx xx xx xx,        #
+          #     email admin'at'yourdomain.net.                  #
+          #                                                     #
+          #     Thank you                                       #
+          #                                                     #
+          #     Jason B. Manlangit                              #
+          #     Network Administrator                           #
+          #     Jason.com                                       #
+          #                                                     #
+          #######################################################
+        state: present
+
+    - name: Add configure the motd banner
+      ios_banner:
+        banner: motd
+        text: |
+          #######################################################
+          #                                                     #
+          #     You have successfully entered this system       #
+          #     $(hostname) on line $(line). Be advised your    #
+          #     action are logged and audits are performed      #
+          #     daily. If you have any questions contact the    #
+          #     system administrator at +47 xx xx xx xx,        #
+          #     email admin'at'yourdomain.net.                  #
+          #                                                     #
+          #     Thank you                                       #
+          #                                                     #
+          #     Jason B. Manlangit                              #
+          #     Network Administrator                           #
+          #     Jason.com                                       #
+          #                                                     #
+          #######################################################
+        state: present
+
+    - name: Add configure the login banner
+      ios_banner:
+        banner: login
+        text: |
+          #######################################################
+          #                                                     #
+          #     You have successfully entered this system       #
+          #     $(hostname) on line $(line). Be advised your    #
+          #     action are logged and audits are performed      #
+          #     daily. If you have any questions contact the    #
+          #     system administrator at +47 xx xx xx xx,        #
+          #     email admin'at'yourdomain.net.                  #
+          #                                                     #
+          #     Thank you                                       #
+          #                                                     #
+          #     Jason B. Manlangit                              #
+          #     Network Administrator                           #
+          #     Jason.com                                       #
+          #                                                     #
+          #######################################################
+        state: present
+ 
