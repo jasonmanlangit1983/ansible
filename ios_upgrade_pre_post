@@ -1,0 +1,31 @@
+---
+
+- name: Cisco IOS Pre_Post check
+  hosts: cisco
+  gather_facts: no
+  tasks:
+    - name: Run 'Cisco IOS Upgrade Pre_Post' command
+      cisco.ios.ios_command:
+        commands:
+          - terminal length 0
+          - show switch
+          - show interface status | ex notcoonect
+          - show vrf
+          - show ip route
+          - show ip interface brief | ex una
+          - show ip route vrf *
+          - show cdp neighbor
+          - show ip ospf neighbor
+          - show running
+          - show logging
+          - show interface description | i AP
+          - show running | i bgp
+          - show install summary
+          - show  interface description | i POLY
+      register: IOS_Upgrade_Pre_Post_info
+
+    - name: Save version information to a local file on localhost
+      delegate_to: localhost
+      copy:
+        content: "{{ IOS_Upgrade_Pre_Post_info.stdout | replace('\\n', '\n') }}" 
+        dest: "/tmp/{{ inventory_hostname }}_IOS_Upgrade_Pre_Post.txt"

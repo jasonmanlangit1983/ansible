@@ -1,6 +1,7 @@
-[cisco]
+############################################################################
+#[cisco]
 
-R1 ansible_host=192.168.1.49
+R1 ansible_host=192.168.1.44
 
 [cisco:vars]
 ansible_user=jason
@@ -8,9 +9,10 @@ ansible_password=Jammellah1
 ansible_network_os=ios
 ansible_connection=network_cli
 
-[nxos]
+############################################################################
+#[nxos]
 
-R1 ansible_host=192.168.1.49
+R1 ansible_host=192.168.1.44
 
 [nxos:vars]
 ansible_user=jason
@@ -18,9 +20,10 @@ ansible_password=Jammellah1
 ansible_network_os=nxos
 ansible_connection=network_cli
 
+###########################################################################
 [asa]
 
-R1 ansible_host=192.168.1.49
+R1 ansible_host=192.168.1.44
 
 [asa:vars]
 ansible_user=jason
@@ -31,4 +34,6 @@ ansible_become_pass=become_password
 ansible_connection=network_cli
 ansible_network_os=cisco.asa.asa
 ansible_python_interpreter=python
+ansible_network_terminal_errors=ignore
 
+##########################################################################
